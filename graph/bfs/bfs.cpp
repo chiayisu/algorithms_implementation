@@ -4,12 +4,12 @@
 using namespace std;
 
 
-void bfs(int ** adj, bool *traversed, int start){
+void bfs(int ** adj, bool *traversed, int start, int nvertex){
     queue<int> q;
     q.push(start);
     while(!q.empty()){
         int vertex = q.front();
-        for (int i = 0;i<8;i++){
+        for (int i = 0;i<nvertex;i++){
             if(adj[vertex][i] == 1 && !traversed[i]) q.push(i);
         }
         cout << vertex;
@@ -22,10 +22,11 @@ void bfs(int ** adj, bool *traversed, int start){
 
 
 int main(){
-    int **adj_matrix =  new int *[8];
-    bool * traversed = new bool [8]{false};
-    for (int i = 0;i<8;i++){
-        int *temp = new int [8]{0};
+    int nvertex = 8;
+    int **adj_matrix =  new int *[nvertex];
+    bool * traversed = new bool [nvertex]{false};
+    for (int i = 0;i<nvertex;i++){
+        int *temp = new int [nvertex]{0};
         adj_matrix[i] = temp;
     }
 
@@ -43,6 +44,6 @@ int main(){
     adj_matrix[3][2] = 1;
     adj_matrix[4][5] = 1;
     adj_matrix[5][4] = 1;
-    bfs(adj_matrix, traversed, 0);
+    bfs(adj_matrix, traversed, 0, nvertex);
     return 0;
 }
